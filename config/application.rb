@@ -20,7 +20,10 @@ module ColorSwatchApi
   class Application < Rails::Application
     config.load_defaults 5.1
     config.middleware.insert_before 0, Rack::Cors do
-      resource '*', :headers => :any, :methods => [:get, :post, :options]
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
     end
     config.api_only = true
   end
