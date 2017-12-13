@@ -1,24 +1,21 @@
-# README
+# Color Swatch API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Color Swatch tracks frequently used colors. You can `POST` colors to the database, and
+`GET` the most frequently posted color.
 
-Things you may want to cover:
+## Base URL: [https://color-swatch-api.herokuapp.com/](https://color-swatch-api.herokuapp.com/)
 
-* Ruby version
+|Verb|Path|Body|Response|
+|---|---|---|---|
+|`GET`|`/api/v1/top_color`||`"{\"value\":\"tomato\", \"color_count\": 7}"`|
+|`GET`|`/api/v1/colors`||`"[{\"value\":"tomato"},{\"value\":\"indigo\"}]"`|
+|`POST`|`/api/v1/colors`|`{ color: { value: "indigo" } }`|`"{\"color\":{\"value\":\"indigo\"}}"`|
 
-* System dependencies
+## Environment Setup
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+bundle install
+bundle exec rake db:{create,migrate,seed}
+bundle exec rspec
+bundle exec rails s
+```
