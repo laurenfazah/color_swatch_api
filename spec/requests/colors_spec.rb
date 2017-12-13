@@ -7,7 +7,7 @@ RSpec.describe "Colors resource" do
     it "returns a 201" do
       post api_v1_colors_path, params: color
 
-      expect(response.status).to eq 204
+      expect(response.status).to eq 201
     end
 
     it "adds a color to the database" do
