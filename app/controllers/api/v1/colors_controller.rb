@@ -4,6 +4,7 @@ class Api::V1::ColorsController < ApplicationController
   end
 
   def create
+    Color.check_table_size
     color = Color.new(color_params)
     if color.save
       render json: color, status: 201
