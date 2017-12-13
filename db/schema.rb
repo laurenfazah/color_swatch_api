@@ -14,9 +14,10 @@ ActiveRecord::Schema.define(version: 20171213174130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "citext"
 
   create_table "colors", force: :cascade do |t|
-    t.string "value"
+    t.citext "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -20,5 +20,19 @@ RSpec.describe "Top color API" do
       color = JSON.parse(response.body, symbolize_names: true)
       expect(color[:value]).to eq "green"
     end
+
+    it "is case sensitive" do
+      # we want students to downcase client-side
+      colors = %w(orange Green yellow red green GREEN yellow)
+      colors.each do |color|
+        Color.create(value: color)
+      end
+
+      get api_v1_top_color_path
+
+      color = JSON.parse(response.body, symbolize_names: true)
+      expect(color[:value]).to eq     "yellow"
+      expect(color[:value]).not_to eq "green"
+    end
   end
 end
