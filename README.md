@@ -11,7 +11,7 @@ Color Swatch tracks frequently used colors. You can `POST` colors to the databas
 |`GET`|`/api/v1/colors`||`"[{\"value\":"tomato"},{\"value\":\"indigo\"}]"`|
 |`POST`|`/api/v1/colors`|`{ color: { value: "indigo" } }`|`"{\"color\":{\"value\":\"indigo\"}}"`|
 
-## Environment Setup
+## Setup
 
 ```bash
 bundle install
@@ -19,3 +19,7 @@ bundle exec rake db:{create,migrate,seed}
 bundle exec rspec
 bundle exec rails s
 ```
+
+## Notes
+
+The `colors` table is set to reset itself once exceeding 2000 entries. This may happen mid-development for you, so be wary.
