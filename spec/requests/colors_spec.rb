@@ -1,6 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "Colors resource" do
+  describe "GET /api/v1/colors" do
+
+    let(:color) { { color: { value: "tomato" } } }
+
+    it "returns a 200" do
+      get api_v1_colors_path
+      expect(response.status).to eq 200
+    end
+
+    it "returns colors" do
+      get api_v1_colors_path
+      expect(JSON.parse(response.body)).to eq []
+
+      post api_v1_colors_path, params: color
+
+      get api_v1_colors_path
+      color_response = JSON.parse(response.body, symbolize_names: true)
+      expect(color_response[0][:value]).to eq "tomato"
+    end
+  end
+
   describe "POST /api/v1/colors" do
     let(:color) { { color: { value: "tomato" } } }
 

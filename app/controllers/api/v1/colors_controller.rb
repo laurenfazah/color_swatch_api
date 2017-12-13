@@ -1,4 +1,8 @@
 class Api::V1::ColorsController < ApplicationController
+  def index
+    render json: Color.all, status: 200
+  end
+
   def create
     color = Color.new(color_params)
     if color.save
